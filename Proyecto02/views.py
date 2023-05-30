@@ -1,6 +1,6 @@
-import datetime as dt
 from django.http import HttpResponse
-from django.template import Template, Context
+from django.template import Template, Context, loader
+from datetime import datetime as dt
 
 def saludo(request):
     return HttpResponse("<br><br><br>¡Hola mundo!<br><br>  ")
@@ -12,12 +12,9 @@ def dia(request):
 def template1(self):
     nombre = "Mariano"
     apellido = "Sirio"
-
-    diccionario = {"Nombre":nombre, "Apellido":apellido}
-
-    miHtml = open("C:/Users/maria/OneDrive/Documentos/Coder House - Python/Django Prueba 2/Prueba02/Proyecto02/Proyecto02/Plantillas/Template-1.html")
-    plantilla = Template(miHtml.read())
-    miHtml.close()
-    miContexto = Context(diccionario)
-    documento = plantilla.render(miContexto)
+    notas = [1,2,3,4,5,6,7,8,9]
+    diccionario = {"Nombre":nombre, "Apellido":apellido, "Ahora":str(dt.now()),"Notas":notas}
+    
+    plantilla = loader.get_template('Template-1.html')
+    documento = plantilla.render(diccionario)
     return HttpResponse(documento)

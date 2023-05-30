@@ -58,7 +58,15 @@
     <div class="matrix-effect"></div>
     <div class="container">
         <div class="celeste">
-            <p>Hola Noelia <br>Soy {{Nombre}}</p>
+            <p>Hola<br>Soy {{Nombre}}</p>
+            <p>Ahora es {{Ahora}}</p>
+            {% for Nota in Notas %}
+                {% if Nota <= 6 %}
+                    <p style="color: darkred">La nota es mala: {{ Nota }}</p>
+                {% else %}
+                    <p>La nota es buena: {{ Nota }}</p>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 </body>
